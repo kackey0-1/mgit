@@ -6,6 +6,7 @@ name = "pypi"
 [packages]
 click = "*"
 pytest = "*"
+gitpython = "*"
 
 [dev-packages]
 

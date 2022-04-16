@@ -75,3 +75,21 @@ class MGit(object):
         else:
             print('Completed Committing.')
 
+    def push(self) -> None:
+        def _push(_repo: git.Repo):
+            semaphore.acquire()
+            _repo.git.checkout('HEAD')
+            _repo.git.push()
+            semaphore.release()
+
+        semaphore = threading.Semaphore()
+        for dir in self.dirs:
+            print(f'Pushing {dir} ...')
+            repo = git.Repo(self.current_dir + dir)
+            thread = threading.Thread(target=_push, args=(repo,))
+            thread.start()
+        while threading.active_count() != 1:
+            pass
+        else:
+            print('Completed Pushing.')
+

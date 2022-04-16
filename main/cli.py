@@ -1,6 +1,6 @@
 import click
-from src.main.common import MGit
-from src.main.common.constants import Action, Environment
+from main.common import MGit
+from main.common.constants import Action, Environment
 
 @click.command()
 @click.argument('action')
@@ -16,6 +16,7 @@ def mgit(action, imagetag, environment):
     elif Action.DEPLOY.value == action:
         m.sync()
         m.commit(imagetag, environment)
+        m.push()
 
 
 if __name__ == "__main__":

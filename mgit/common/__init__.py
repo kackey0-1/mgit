@@ -1,5 +1,5 @@
 from typing import List
-from src.main.common.constants import Environment
+from mgit.common.constants import Environment
 import git
 import os
 import threading

@@ -1,6 +1,6 @@
 import click
-from main.common import MGit
-from main.common.constants import Action, Environment
+from mgit.common import MGit
+from mgit.common.constants import Action, Environment
 
 @click.command()
 @click.argument('action')
@@ -21,4 +21,3 @@ def mgit(action, imagetag, environment):
 
 if __name__ == "__main__":
     print(Action.COMMIT.name)
-    # mgit()

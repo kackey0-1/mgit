@@ -58,14 +58,14 @@ class MGit(object):
         semaphore = threading.Semaphore()
         for dir in self.dirs:
             filename = f'{self.current_dir}{dir}/overlays/{environment}/base/kustomization.yaml'
-            print(filename)
+            # print(filename)
             commit_file = [f'overlays/{environment}/base/kustomization.yaml']
             print(f'Committing {dir} ...')
             with open(filename, mode='r', encoding='utf-8') as f:
                 content = f.read()
             with open(filename, mode='w', encoding='utf-8') as f:
                 content = re.sub('newTag:.+', f'newTag: {image_tag}', content)
-                print(content)
+                # print(content)
                 f.write(content)
             repo = git.Repo(self.current_dir + dir)
             thread = threading.Thread(target=_commit, args=(repo, image_tag, environment, commit_file))
